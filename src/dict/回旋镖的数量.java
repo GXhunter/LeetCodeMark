@@ -2,26 +2,27 @@ package dict;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class 回旋镖的数量 {
-//     todo 暂未通过
+    //     todo 暂未通过
     public int numberOfBoomerangs(int[][] points) {
 //        距离i平方
-        Map<Integer, Integer> distance = new HashMap<>();
+        AtomicInteger res = new AtomicInteger();
         for (int i = 0; i < points.length; i++) {
-//            todo
-            for (int j = i + 1; j < points.length; j++) {
+            Map<Integer, Integer> distance = new HashMap<>();
+            for (int j = 0; j < points.length; j++) {
                 if (i != j) {
                     int dis = (points[j][0] - points[i][0]) * (points[j][0] - points[i][0]) +
                             (points[j][1] - points[i][1]) * (points[j][1] - points[i][1]);
                     distance.putIfAbsent(dis, 0);
                     distance.put(dis, distance.get(dis) + 1);
-
                 }
             }
+            distance.values().stream().map(e -> e * (e - 1)).forEach(e -> res.set(res.get() + e));
         }
 
-        return distance.values().stream().filter(e -> e > 2).map(e -> e * (e - 1)).reduce(Integer::sum).orElse(0);
+        return res.get();
     }
 
     public static void main(String[] args) {
