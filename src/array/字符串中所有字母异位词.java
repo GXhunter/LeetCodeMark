@@ -9,12 +9,12 @@ public class 字符串中所有字母异位词 {
     public List<Integer> findAnagrams(String s, String p) {
         List<Integer> res = new ArrayList<>();
         char[] chars = s.toCharArray();
-        int target[] = new int[26];
+        int[] target = new int[26];
         for (char c : p.toCharArray()) {
             target[c - 'a']++;
         }
         for (int index = 0; index <= chars.length - p.length(); index++) {
-            int source[] = new int[26];
+            int[] source = new int[26];
             for (int i = index; i < index + p.length(); i++) {
                 source[chars[i]-'a']++;
             }
