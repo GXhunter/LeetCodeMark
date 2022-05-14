@@ -18,15 +18,18 @@ public class ListNode {
 
     @Override
     public String toString() {
-        return val +"->" + (next == null ? "NULL" : next.toString());
+        return val+"";
+    }
+
+    public String showInfo() {
+        return val + "->" + (next == null ? "NULL" : next.showInfo());
     }
 
     public static ListNode create(int... nums) {
-        int[] value = new int[]{1, 4, 3, 2, 5, 2};
-        final ListNode header = new ListNode(value[0]);
+        final ListNode header = new ListNode(nums[0]);
         ListNode current = header;
-        for (int j = 1; j < value.length; j++) {
-            current.next = new ListNode(value[j]);
+        for (int j = 1; j < nums.length; j++) {
+            current.next = new ListNode(nums[j]);
             current = current.next;
         }
         return header;

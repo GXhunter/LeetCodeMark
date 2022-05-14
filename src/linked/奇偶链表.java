@@ -1,24 +1,33 @@
 package linked;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class 奇偶链表 {
 
     public ListNode oddEvenList(ListNode head) {
-        ListNode dummy = new ListNode();
-        dummy.next = head;
+        List<ListNode> odd = new ArrayList<>();
+        List<ListNode> even = new ArrayList<>();
         ListNode cur = head;
-        ListNode pre = dummy;
-        ListNode left = dummy;
         for (int i = 1; cur!=null; i++) {
-            if (i%2==1) {
-                pre.next = cur.next;
-                cur.next = left.next;
-                left.next = cur;
-                left = cur;
+            if (i % 2 == 1) {
+                odd.add(cur);
+            }else {
+                even.add(cur);
             }
-            pre = cur.next;
-            cur = cur.next.next;
-
+            cur = cur.next;
         }
+        ListNode dummy = new ListNode();
+        ListNode current = dummy;
+        for (ListNode listNode : odd) {
+            current.next = listNode;
+            current = listNode;
+        }
+        for (ListNode listNode : even) {
+            current.next = listNode;
+            current = listNode;
+        }
+        current.next = null;
         return dummy.next;
     }
 
