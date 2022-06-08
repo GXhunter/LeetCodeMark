@@ -9,10 +9,6 @@ import java.util.Arrays;
  */
 public class 零钱兑换 {
     public int coinChange(int[] coins, int amount) {
-        if (amount == 0) {
-            return 0;
-        }
-        Arrays.sort(coins);
 //        memo[j] 表示  填满 容量为j 所需的最少硬币
         int[] memo = new int[amount + 1];
         Arrays.fill(memo, Integer.MAX_VALUE);
@@ -20,9 +16,9 @@ public class 零钱兑换 {
 //            遍历容量
         for (int j = 1; j <= amount; j++) {
 //        遍历元素
-            for (int i = 0; i < coins.length; i++) {
-                if (j - coins[i] >= 0 && memo[j - coins[i]]!=Integer.MAX_VALUE) {
-                    memo[j] = Math.min(memo[j - coins[i]] + 1, memo[j]);
+            for (int coin : coins) {
+                if (j - coin >= 0 && memo[j - coin] != Integer.MAX_VALUE) {
+                    memo[j] = Math.min(memo[j - coin] + 1, memo[j]);
                 }
             }
         }
@@ -30,6 +26,6 @@ public class 零钱兑换 {
     }
 
     public static void main(String[] args) {
-        System.out.println(new 零钱兑换().coinChange(new int[]{186,419,83,408}, 6249));
+        System.out.println(new 零钱兑换().coinChange(new int[]{186,419,83,408}, 0));
     }
 }
