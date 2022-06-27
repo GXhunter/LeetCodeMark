@@ -3,17 +3,14 @@ package linked;
 public class 反转链表 {
 
     public ListNode reverseList(ListNode head) {
-        ListNode cur = head;
-        ListNode pre = null;
-
-        while (cur != null) {
-            ListNode next = cur.next;
-            cur.next = pre;
-            pre = cur;
-            cur = next;
+        if (head == null || head.next == null) {
+            return head;
         }
-        return pre==null?new ListNode():pre;
-
+        ListNode next = head.next;
+        ListNode listNode = reverseList(next);
+        next.next = head;
+        head.next = null;
+        return listNode;
     }
 
     public static void main(String[] args) {
