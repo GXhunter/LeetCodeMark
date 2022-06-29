@@ -1,33 +1,28 @@
 package linked;
-//todo 待定大数相加
+
 public class 两数相加 {
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-        StringBuilder a = new StringBuilder();
-
-        for (ListNode cur = l1; cur != null; cur = cur.next) {
-            a.append(cur.val);
-        }
-        Long integer = Long.valueOf(a.reverse().toString());
-
-        StringBuilder b = new StringBuilder();
-
-        for (ListNode cur = l2; cur != null; cur = cur.next) {
-            b.append(cur.val);
-        }
-        Long integer2 = Long.valueOf(b.reverse().toString());
-        Long sum = integer+integer2;
-        String s = new StringBuilder(sum + "").reverse().toString();
         ListNode dummy = new ListNode();
-        ListNode cur = dummy;
-        for (int i = 0; i < s.length(); i++) {
-            cur.next = new ListNode(s.charAt(i)-'0');
-            cur = cur.next;
+        int temp = 0;
+        for (ListNode pre = dummy, cur = null; l1 != null || l2 != null || temp != 0; pre.next = cur, pre = cur) {
+            int a = l1 == null ? 0 : l1.val;
+            int b = l2 == null ? 0 : l2.val;
+            int sum = a + b + temp;
+            cur = new ListNode(sum % 10);
+            temp = sum / 10;
+            if (l1 != null) {
+                l1 = l1.next;
+            }
+            if (l2 != null) {
+                l2 = l2.next;
+            }
         }
+
         return dummy.next;
     }
 
     public static void main(String[] args) {
-        System.out.println(new 两数相加().addTwoNumbers(ListNode.create(1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1),
-                ListNode.create(5,6,4)));
+        System.out.println(new 两数相加().addTwoNumbers(ListNode.create(9, 9, 9, 9, 9, 9, 9),
+                ListNode.create(9, 9, 9, 9)));
     }
 }
