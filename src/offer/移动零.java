@@ -9,10 +9,7 @@ public class 移动零 {
                 i++;
             }
         }
-        for (int i = 0; i < temp.length; i++) {
-            nums[i] = temp[i];
-        }
-        System.out.println(nums);
+        System.arraycopy(temp, 0, nums, 0, temp.length);
     }
 
     public static void main(String[] args) {
