@@ -1,8 +1,6 @@
 package offer;
 
 import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.TreeMap;
 
 public class 第一个只出现一次的字符 {
     public char firstUniqChar(String s) {
