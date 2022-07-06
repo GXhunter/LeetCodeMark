@@ -17,8 +17,11 @@ public class 螺旋矩阵 {
     int m;
     int n;
 
-    public List<Integer> spiralOrder(int[][] matrix) {
+    public int[] spiralOrder(int[][] matrix) {
         m = matrix.length;
+        if (m == 0) {
+            return new int[]{};
+        }
         n = matrix[0].length;
         boolean[][] used = new boolean[m][n];
         List<Integer> res = new ArrayList<>();
@@ -37,7 +40,7 @@ public class 螺旋矩阵 {
                 }
             }
         }
-        return res;
+        return res.stream().mapToInt(Integer::intValue).toArray();
     }
 
 
