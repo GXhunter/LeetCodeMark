@@ -1,5 +1,10 @@
 package tree;
 
+import java.time.Duration;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 public class 根据前序和后序遍历构造二叉树 {
     public TreeNode constructFromPrePost(int[] preorder, int[] postorder) {
         return build(preorder, 0, preorder.length - 1, postorder, 0, postorder.length - 1);
@@ -7,10 +12,11 @@ public class 根据前序和后序遍历构造二叉树 {
 
     private TreeNode build(int[] preorder, int preStart, int preEnd,
                            int[] postorder, int postStart, int postEnd) {
+        if (preStart > preEnd) {
+            return null;
+        }
         if (preStart == preEnd) {
             return new TreeNode(preorder[preStart]);
-        } else if (preStart > preEnd) {
-            return null;
         }
         TreeNode root = new TreeNode(preorder[preStart]);
         int leftRootVal = preorder[preStart + 1];
@@ -28,5 +34,10 @@ public class 根据前序和后序遍历构造二叉树 {
         root.right = build(preorder, preStart + leftSize + 1, preEnd,
                 postorder, index + 1, postEnd - 1);
         return root;
+    }
+
+    public static void main(String[] args) {
+        LocalDateTime now = LocalDateTime.parse("2022-07-13 13:55:59.662", DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS"));
+        System.out.println(Duration.between(now.withNano(0).withSecond(0), now).toMinutes());
     }
 }
