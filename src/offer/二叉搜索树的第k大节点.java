@@ -6,20 +6,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class 二叉搜索树的第k大节点 {
-    public int kthLargest(TreeNode root, int k) {
-        List<Integer> dsf = dsf(root);
-        return dsf.get(dsf.size() - k);
+    int count = 0;
+    int res;
+    public int kthSmallest(TreeNode root, int k) {
+        traverse(root,k);
+        return res;
     }
 
-    List<Integer> dsf(TreeNode root) {
-        ArrayList<Integer> list = new ArrayList<>();
-        if (root.left != null) {
-            list.addAll(dsf(root.left));
+    private void traverse(TreeNode root,int k) {
+        if (root == null) {
+            return;
         }
-        list.add(root.val);
-        if (root.right != null) {
-            list.addAll(dsf(root.right));
+        traverse(root.left,k);
+        count++;
+        if (count==k){
+            res = root.val;
+            return;
         }
-        return list;
+        traverse(root.right,k);
     }
 }
