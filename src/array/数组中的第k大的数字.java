@@ -8,27 +8,26 @@ import java.util.Random;
 public class 数组中的第k大的数字 {
     Random mRandom = new Random();
 
-    int i = 1;
-    int n;
+    int arraySize;
 
     public int findKthLargest(int[] nums, int k) {
-        n = nums.length;
-        if (k > n) {
-            return 0;
-        }
-        sortRange(nums, 0, nums.length - 1, k);
-        return i;
+        return k > (arraySize = nums.length) ?
+                0 : findInRange(nums, 0, nums.length - 1, k);
     }
 
-    private void sortRange(final int[] nums, int from, int to, int k) {
+    /**
+     * 在[from,to]里寻找nums数组第k大元素，并返回对应下标
+     */
+    private int findInRange(final int[] nums, int from, int to, int k) {
         int mid = partion(nums, from, to);
-        if (n - mid == k) {
-            i = nums[mid];
-        } else if (n - mid < k) {
-            sortRange(nums, from, mid - 1, k);
-        } else if (n - mid > k) {
-            sortRange(nums, mid + 1, to, k);
+        if (arraySize - mid == k) {
+            return nums[mid];
+        } else if (arraySize - mid < k) {
+            return findInRange(nums, from, mid - 1, k);
+        } else if (arraySize - mid > k) {
+            return findInRange(nums, mid + 1, to, k);
         }
+        return 0;
     }
 
     /**
