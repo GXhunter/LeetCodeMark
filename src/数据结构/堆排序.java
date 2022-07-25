@@ -5,9 +5,9 @@ import java.util.Arrays;
 public class 堆排序 {
     public void sort(int[] nums) {
         MapHeap heap = new MapHeap(Arrays.stream(nums).boxed().toArray(Integer[]::new));
-
+        int n = nums.length;
         for (int i = 0; i < nums.length; i++) {
-            nums[i] = heap.pop();
+            nums[n - i - 1] = heap.pop();
         }
     }
 
