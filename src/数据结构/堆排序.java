@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public class 堆排序 {
     public void sort(int[] nums) {
-        优先队列<Integer> heap = new 优先队列<>(nums.length);
+        MapHeap heap = new MapHeap(nums.length);
         for (int num : nums) {
             heap.insert(num);
         }

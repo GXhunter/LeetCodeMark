@@ -1,23 +1,34 @@
 package 数据结构;
 
-public class 优先队列<T extends Comparable> {
+public class MapHeap {
     /**
      * 堆容量
      */
-    private int cap;
+    private final int cap;
     /**
      * 当前堆内元素,也是最后一个元素的下标
      */
     protected int count;
-    protected T[] data;
+    protected Integer[] data;
 
-    public 优先队列(int cap) {
+    public MapHeap(int cap) {
         this.cap = cap + 1;
-        data = (T[]) new Comparable[this.cap];
+        data = new Integer[this.cap];
+    }
+
+    public MapHeap(Integer[] nums) {
+        this.cap = nums.length + 1;
+        this.data = new Integer[this.cap];
+        System.arraycopy(nums, 0, this.data, 0, this.data.length);
+        count = this.cap;
+        //        headpify 从最后一个非叶子节点开始
+        for (int i = count / 2; i > 0; i--) {
+            shiftDown(i);
+        }
     }
 
 
-    public void insert(T val) {
+    public void insert(Integer val) {
         if (count == cap) {
             throw new RuntimeException("容量已满");
         }
@@ -26,11 +37,11 @@ public class 优先队列<T extends Comparable> {
         shiftUp(count);
     }
 
-    public T pop() {
+    public Integer pop() {
         if (count == 0) {
             return null;
         }
-        T val = data[1];
+        Integer val = data[1];
         swap(1, count);
         count--;
         shiftDown(1);
@@ -39,7 +50,7 @@ public class 优先队列<T extends Comparable> {
 
 
     private void shiftUp(int index) {
-        while (index > 1 && data[index].compareTo(data[index / 2]) > 0) {
+        while (index > 1 && data[index] > data[index / 2]) {
             swap(index, index / 2);
             index = index / 2;
         }
@@ -48,10 +59,12 @@ public class 优先队列<T extends Comparable> {
     private void shiftDown(int index) {
         while (index * 2 <= count) {
             int b = index * 2;
-            if (index * 2 + 1 <= count && data[b + 1].compareTo(data[b]) > 0) {
+            if (index * 2 + 1 <= count && data[b + 1] > data[b]) {
+//                找到两个子节点中较大值对应的索引
                 b++;
             }
-            if (data[index].compareTo(data[b]) > 0) {
+//            父节点比子节点最大值还大，无需操作
+            if (data[index] > data[b]) {
                 break;
             }
             swap(index, b);
@@ -64,7 +77,7 @@ public class 优先队列<T extends Comparable> {
     }
 
     private void swap(int a, int b) {
-        T temp = this.data[a];
+        Integer temp = this.data[a];
         this.data[a] = this.data[b];
         this.data[b] = temp;
     }

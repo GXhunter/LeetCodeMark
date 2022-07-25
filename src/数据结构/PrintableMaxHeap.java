@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 // 我们的PrintableMaxHeap只能处理整数信息，所以继承的是MaxHeap<Comparable<Integer>>
-public class PrintableMaxHeap extends 优先队列<Comparable<Integer>>{
+public class PrintableMaxHeap extends MapHeap {
 
     public PrintableMaxHeap(int capacity){
         super(capacity);
