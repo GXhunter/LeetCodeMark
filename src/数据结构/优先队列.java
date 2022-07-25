@@ -1,7 +1,5 @@
 package 数据结构;
 
-import sun.util.resources.es.CurrencyNames_es_UY;
-
 public class 优先队列<T extends Comparable> {
     /**
      * 堆容量
@@ -14,9 +12,10 @@ public class 优先队列<T extends Comparable> {
     protected T[] data;
 
     public 优先队列(int cap) {
-        this.cap = cap;
-        data = (T[]) new Comparable[cap];
+        this.cap = cap + 1;
+        data = (T[]) new Comparable[this.cap];
     }
+
 
     public void insert(T val) {
         if (count == cap) {
@@ -49,10 +48,13 @@ public class 优先队列<T extends Comparable> {
     private void shiftDown(int index) {
         while (index * 2 <= count) {
             int b = index * 2;
-            if (index * 2 + 1 <= count && data[index * 2 + 1].compareTo(data[index * 2] )> 0) {
+            if (index * 2 + 1 <= count && data[b + 1].compareTo(data[b]) > 0) {
                 b++;
             }
-            swap(index,b);
+            if (data[index].compareTo(data[b]) > 0) {
+                break;
+            }
+            swap(index, b);
             index = b;
         }
     }
