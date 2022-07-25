@@ -4,10 +4,8 @@ import java.util.Arrays;
 
 public class 堆排序 {
     public void sort(int[] nums) {
-        MapHeap heap = new MapHeap(nums.length);
-        for (int num : nums) {
-            heap.insert(num);
-        }
+        MapHeap heap = new MapHeap(Arrays.stream(nums).boxed().toArray(Integer[]::new));
+
         for (int i = 0; i < nums.length; i++) {
             nums[i] = heap.pop();
         }

@@ -19,8 +19,8 @@ public class MapHeap {
     public MapHeap(Integer[] nums) {
         this.cap = nums.length + 1;
         this.data = new Integer[this.cap];
-        System.arraycopy(nums, 0, this.data, 0, this.data.length);
-        count = this.cap;
+        System.arraycopy(nums, 0, this.data, 1, nums.length);
+        count = nums.length;
         //        headpify 从最后一个非叶子节点开始
         for (int i = count / 2; i > 0; i--) {
             shiftDown(i);
