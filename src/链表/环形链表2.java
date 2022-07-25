@@ -1,6 +1,4 @@
-package 剑指offer;
-
-import 链表.ListNode;
+package 链表;
 
 public class 环形链表2 {
     public ListNode detectCycle(ListNode head) {

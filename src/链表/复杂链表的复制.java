@@ -1,4 +1,7 @@
-package 剑指offer;
+package 链表;
+
+
+import 剑指offer.Node;
 
 import java.util.HashMap;
 import java.util.Map;

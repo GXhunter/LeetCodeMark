@@ -1,4 +1,4 @@
-package 剑指offer;
+package 链表;
 
 import 链表.ListNode;
 

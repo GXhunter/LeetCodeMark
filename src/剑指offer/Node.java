@@ -1,7 +1,7 @@
 package 剑指offer;
 
 public class Node {
-    int val;
+    public int val;
     public Node next;
     public Node random;
 

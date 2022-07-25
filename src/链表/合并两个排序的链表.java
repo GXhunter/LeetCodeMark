@@ -1,6 +1,4 @@
-package 剑指offer;
-
-import 链表.ListNode;
+package 链表;
 
 public class 合并两个排序的链表 {
     public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
