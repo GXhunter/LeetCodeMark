@@ -15,11 +15,8 @@ public class 最小路径之和 {
         }
         for (int i = 1; i < m; i++) {
             for (int j = 0; j < n; j++) {
-                if (j == 0) {
-                    dp[j] = dp[j] + grid[i][j];
-                }else {
-                    dp[j] = Math.min(dp[j], dp[j - 1]) + grid[i][j];
-                }
+                dp[j] = (j == 0 ? dp[j]
+                        : Math.min(dp[j], dp[j - 1])) + grid[i][j];
             }
         }
         return dp[n - 1];
@@ -27,9 +24,9 @@ public class 最小路径之和 {
 
     public static void main(String[] args) {
         System.out.println(new 最小路径之和().minPathSum(new int[][]{
-                {1,3,1},
-                {1,5,1},
-                {4,2,1},
+                {1, 3, 1},
+                {1, 5, 1},
+                {4, 2, 1},
         }));
     }
 }
