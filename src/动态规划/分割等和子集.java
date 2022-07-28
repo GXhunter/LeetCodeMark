@@ -11,26 +11,28 @@ public class 分割等和子集 {
         if (sum % 2 != 0) {
             return false;
         }
-//        背包容量
-        int C = sum / 2;
-        int n = nums.length;
-/*
-        n 个物品填满 容量为C的背包
-        F(n,C) = F(n-1,C)||F(n-1,C-w(i))
- */
-        boolean[][] memo = new boolean[n][C + 1];
-        for (int i = 0; i <= C; i++) {
-            memo[0][i] = nums[0] == i;
+//        背包大小
+        sum /= 2;
+//        dp[i][j]： 使用nums[0,i) 能否填满 j
+        boolean[][] dp = new boolean[nums.length][sum + 1];
+        for (int i = 1; i <= sum; i++) {
+            dp[0][i] = i == nums[0];
         }
-        for (int i = 1; i < n; i++) {
-            for (int j = 0; j <= C; j++) {
-                    memo[i][j] = memo[i - 1][j] || (j - nums[i]>0 && memo[i - 1][j - nums[i]]);
+        for (int i = 1; i < nums.length; i++) {
+            for (int j = 1; j <= sum; j++) {
+                if (j - nums[i] >= 0) {
+                    dp[i][j] = dp[i - 1][j - nums[i]] || dp[i-1][j];
+                }else {
+                    dp[i][j] = dp[i - 1][j];
+                }
             }
         }
-        return memo[n-1][C];
+
+        return dp[nums.length - 1][sum];
+
     }
 
     public static void main(String[] args) {
-        System.out.println(new 分割等和子集().canPartition(new int[]{1, 5, 11, 5}));
+        System.out.println(new 分割等和子集().canPartition(new int[]{1,2,3,5}));
     }
 }
