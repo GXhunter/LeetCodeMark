@@ -17,7 +17,7 @@ public class 两个字符串的删除操作 {
         int n = word2.length();
 //        dp[j][j]表示 word1[0:i)与word2[0:j)的最大公共子串
 //        动态转移方程dp[i][j] = word1[i]==word2[j]
-//          ? 1 + dp[i-1][j-1] : max(dp[i][j-1],dp[i-1][j])
+//          ? 1 + dp[i-1][j-1] : max(dp[i][j-1],dp[i-1][j],dp[i-1][j-1])
         int[][] dp = new int[m + 1][n + 1];
 //        base dp[0][n] = 0
 //        base dp[m][0] = 0
