@@ -21,15 +21,4 @@ public class 平衡二叉树 {
         return Math.max(leftHeight, rightHeight) + 1;
     }
 
-    public static void main(String[] args) {
-        TreeNode root = new TreeNode(1,
-                new TreeNode(2, new TreeNode(3,
-                        new TreeNode(4), null
-                ), null)
-                , new TreeNode(3, null, new TreeNode(3, null, new TreeNode(4))
-        )
-        );
-        System.out.println(new 平衡二叉树().isBalanced(root));
-    }
-
 }
